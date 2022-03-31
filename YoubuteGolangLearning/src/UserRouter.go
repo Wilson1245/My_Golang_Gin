@@ -9,7 +9,8 @@ import (
 func AddUserRouter(r *gin.RouterGroup) {
 	user := r.Group("/users")
 
-	user.GET("/", service.FindAllUsers)
+	user.GET("/", service.GetAllUser)
+	user.GET("/:id", service.GetOneUser)
 	user.POST("/", service.PostUser)
 	// delete user
 	user.DELETE("/:id", service.DeleteUser)
