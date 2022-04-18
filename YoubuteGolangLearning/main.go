@@ -4,14 +4,23 @@ import (
 	database "golangAPI/database"
 	"golangAPI/middlewares"
 	src "golangAPI/src"
+	"io"
+	"os"
 
 	"github.com/gin-gonic/gin"
 )
 
-func main() {
-	router := gin.Default()
+func setupLoggerOutput() {
+	f, _ := os.Create("gin.log")
+	gin.DefaultWriter = io.MultiWriter(f, os.Stdout)
+}
 
-	router.Use(gin.Recovery(), middlewares.Logger())
+func main() {
+
+	setupLoggerOutput() // setup logging
+
+	router := gin.Default()
+	router.Use(gin.Recovery(), middlewares.Logger()) // logging
 
 	v1 := router.Group("/v1")
 	src.AddUserRouter(v1)
