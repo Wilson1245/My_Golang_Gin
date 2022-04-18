@@ -5,10 +5,10 @@ import (
 )
 
 type User struct {
-	Id       int    `json:"UserId"`
-	Name     string `json:"UserName"`
-	Password string `json:"UserPassword"`
-	Email    string `json:"UserEmail"`
+	Id       int    `json:"UserId", binding:"omitempty"`
+	Name     string `json:"UserName", binding:"gt=5"`
+	Password string `json:"UserPassword", binding:"min=4, max=20"`
+	Email    string `json:"UserEmail", binding:"required"`
 }
 
 // FindAllUsers
