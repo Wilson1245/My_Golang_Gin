@@ -12,5 +12,15 @@
 [GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
 Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
 [GIN-debug] Listening and serving HTTP on :8000
-::1 - [2022-04-18 21:48:55.739826 +0800 CST m=+26.202470588] GET /v1/users/ 200 910.449µs 
-[GIN] 2022/04/18 - 21:48:55 | 200 |      977.25µs |             ::1 | GET      "/v1/users/"
+::1 - [2022-04-29 00:39:09.591028 +0800 CST m=+9.298128572] GET /v1/users/ 200 3.821087ms 
+[GIN] 2022/04/29 - 00:39:09 | 200 |    3.984404ms |             ::1 | GET      "/v1/users/"
+::1 - [2022-04-29 00:39:12.550717 +0800 CST m=+12.257886728] POST /v1/users/ 400 630.434µs 
+[GIN] 2022/04/29 - 00:39:12 | 400 |     677.423µs |             ::1 | POST     "/v1/users/"
+::1 - [2022-04-29 00:39:40.390115 +0800 CST m=+40.097704141] POST /v1/users/ 400 133.917µs 
+[GIN] 2022/04/29 - 00:39:40 | 400 |     189.835µs |             ::1 | POST     "/v1/users/"
+::1 - [2022-04-29 00:39:44.976081 +0800 CST m=+44.683719459] POST /v1/users/ 400 104.116µs 
+[GIN] 2022/04/29 - 00:39:44 | 400 |     154.761µs |             ::1 | POST     "/v1/users/"
+::1 - [2022-04-29 00:39:51.005661 +0800 CST m=+50.713360634] POST /v1/users/ 400 38.985µs 
+[GIN] 2022/04/29 - 00:39:51 | 400 |      94.176µs |             ::1 | POST     "/v1/users/"
+::1 - [2022-04-29 00:39:56.141947 +0800 CST m=+55.849696871] POST /v1/users/ 201 3.069148ms 
+[GIN] 2022/04/29 - 00:39:56 | 201 |    3.111758ms |             ::1 | POST     "/v1/users/"

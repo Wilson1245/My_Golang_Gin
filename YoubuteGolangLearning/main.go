@@ -8,6 +8,8 @@ import (
 	"os"
 
 	"github.com/gin-gonic/gin"
+	"github.com/gin-gonic/gin/binding"
+	"github.com/go-playground/validator/v10"
 )
 
 func setupLoggerOutput() {
@@ -20,6 +22,11 @@ func main() {
 	setupLoggerOutput() // setup logging
 
 	router := gin.Default()
+
+	if v, ok := binding.Validator.Engine().(*validator.Validate); ok {
+		v.RegisterValidation("userpasd", middlewares.UserPasd)
+	}
+
 	router.Use(gin.Recovery(), middlewares.Logger()) // logging
 
 	v1 := router.Group("/v1")

@@ -32,7 +32,7 @@ func PostUser(c *gin.Context) {
 	user := pojo.User{}
 	err := c.BindJSON(&user)
 	if err != nil {
-		c.JSON(http.StatusNotAcceptable, "Error : "+err.Error())
+		c.String(400, "錯誤訊息:%s", err.Error())
 		return
 	}
 	newUser := pojo.CreateUser(user)
