@@ -11,6 +11,11 @@ type User struct {
 	Email    string `json:"UserEmail" binding:"required"`
 }
 
+type Users struct {
+	UserList     []User `json:"UserList" binding:"gt=0,lt=3"`
+	UserListSize int    `json:"UserListSize"`
+}
+
 // FindAllUsers
 func FindAllUsers() []User {
 	users := []User{}
