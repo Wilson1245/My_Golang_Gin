@@ -1,6 +1,7 @@
 package service
 
 import (
+	session "golangAPI/middlewares"
 	"golangAPI/pojo"
 	"log"
 	"net/http"
@@ -42,12 +43,12 @@ func PostUser(c *gin.Context) {
 // delete User
 
 func DeleteUser(c *gin.Context) {
-	user := pojo.DeleteUser(c.Param("id"))
-	if user.Id == 0 {
-		c.JSON(http.StatusNotFound, "Error")
+	isDelete := pojo.DeleteUser(c.Param("id"))
+	if isDelete {
+		c.JSON(http.StatusOK, "Successfully")
 		return
 	}
-	c.JSON(http.StatusOK, "Successfully deleted")
+	c.JSON(http.StatusNotFound, "Error")
 }
 
 // put User
@@ -86,5 +87,25 @@ func LoginUser(c *gin.Context) {
 		c.JSON(http.StatusNotFound, "Error")
 		return
 	}
-	c.JSON(http.StatusOK, user)
+	session.SaveSession(c, user.Id)
+	c.JSON(http.StatusOK, gin.H{
+		"message": "Successfully logged in",
+		"user":    user,
+		"Session": session.GetSession(c),
+	})
+}
+
+// User get Session
+func GetSession(c *gin.Context) {
+	c.JSON(http.StatusOK, gin.H{
+		"message": session.GetSession(c),
+	})
+}
+
+// Logout User
+func LogoutUser(c *gin.Context) {
+	session.ClearSession(c)
+	c.JSON(http.StatusOK, gin.H{
+		"message": "Successfully logged out",
+	})
 }

@@ -7,7 +7,7 @@ import (
 type User struct {
 	Id       int    `json:"UserId" binding:"omitempty"`
 	Name     string `json:"UserName" binding:"gt=5"`
-	Password string `json:"UserPassword" binding:"min=4,max=20,userpasd"`
+	Password string `json:"UserPassword" binding:"min=4,max=20"`
 	Email    string `json:"UserEmail" binding:"required"`
 }
 
@@ -37,10 +37,10 @@ func CreateUser(user User) User {
 }
 
 // DeleteUser
-func DeleteUser(userId string) User {
+func DeleteUser(userId string) bool {
 	user := User{}
-	db.DBconnect.Where("id = ?", userId).Delete(&user)
-	return user
+	result := db.DBconnect.Where("id = ?", userId).Delete(&user)
+	return result.RowsAffected > 0
 }
 
 // UpdateUser
@@ -52,6 +52,6 @@ func UpdateUser(userId string, user User) User {
 // Check if user exists
 func LoginUser(name string, password string) User {
 	user := User{}
-	db.DBconnect.Where("name = ?, password = ?", name, password).First(&user)
+	db.DBconnect.Where("name = ? and password = ?", name, password).First(&user)
 	return user
 }

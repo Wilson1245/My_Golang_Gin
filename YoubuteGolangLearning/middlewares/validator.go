@@ -8,7 +8,7 @@ import (
 )
 
 func UserPasd(field validator.FieldLevel) bool {
-	if match, _ := regexp.MatchString(`^[A-Z][a-z]\d`, field.Field().String()); match {
+	if match, _ := regexp.MatchString(`^\w{4,20}$`, field.Field().String()); match {
 		return true
 	}
 	return false
