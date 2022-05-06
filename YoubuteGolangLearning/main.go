@@ -25,7 +25,7 @@ func main() {
 	router := gin.Default()
 
 	if v, ok := binding.Validator.Engine().(*validator.Validate); ok {
-		// 	v.RegisterValidation("userpasd", middlewares.UserPasd)
+		v.RegisterValidation("userpasd", middlewares.UserPasd)
 		v.RegisterStructValidation(middlewares.UserList, pojo.Users{})
 	}
 

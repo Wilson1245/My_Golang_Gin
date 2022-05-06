@@ -16,15 +16,9 @@
 [GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
 Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
 [GIN-debug] Listening and serving HTTP on :8000
-::1 - [2022-05-06 22:49:05.139305 +0800 CST m=+3.575331406] GET /v1/users/session 200 251.175µs 
-[GIN] 2022/05/06 - 22:49:05 | 200 |     402.275µs |             ::1 | GET      "/v1/users/session"
-::1 - [2022-05-06 22:49:23.670267 +0800 CST m=+22.106713273] GET /v1/users/logout 200 179.983µs 
-[GIN] 2022/05/06 - 22:49:23 | 200 |     227.014µs |             ::1 | GET      "/v1/users/logout"
-::1 - [2022-05-06 22:49:27.461768 +0800 CST m=+25.898300153] GET /v1/users/session 401 69.093µs 
-[GIN] 2022/05/06 - 22:49:27 | 401 |     122.197µs |             ::1 | GET      "/v1/users/session"
-::1 - [2022-05-06 22:49:36.003944 +0800 CST m=+34.440669716] GET /v1/users/ 200 612.797µs 
-[GIN] 2022/05/06 - 22:49:36 | 200 |     657.798µs |             ::1 | GET      "/v1/users/"
-::1 - [2022-05-06 22:49:41.918239 +0800 CST m=+40.355099617] DELETE /v1/users/3 401 65.157µs 
-[GIN] 2022/05/06 - 22:49:41 | 401 |      119.31µs |             ::1 | DELETE   "/v1/users/3"
-::1 - [2022-05-06 22:49:45.169071 +0800 CST m=+43.606005160] GET /v1/users/ 200 316.041µs 
-[GIN] 2022/05/06 - 22:49:45 | 200 |     363.166µs |             ::1 | GET      "/v1/users/"
+::1 - [2022-05-06 22:56:12.205558 +0800 CST m=+6.978861277] POST /v1/users/ 400 389.7µs 
+[GIN] 2022/05/06 - 22:56:12 | 400 |     536.202µs |             ::1 | POST     "/v1/users/"
+::1 - [2022-05-06 22:56:31.907819 +0800 CST m=+26.680858028] POST /v1/users/ 201 2.890594ms 
+[GIN] 2022/05/06 - 22:56:31 | 201 |     2.93275ms |             ::1 | POST     "/v1/users/"
+::1 - [2022-05-06 22:56:46.037429 +0800 CST m=+40.810279039] GET /v1/users/ 200 391.563µs 
+[GIN] 2022/05/06 - 22:56:46 | 200 |     435.054µs |             ::1 | GET      "/v1/users/"
