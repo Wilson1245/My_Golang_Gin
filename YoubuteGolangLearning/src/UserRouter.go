@@ -17,4 +17,7 @@ func AddUserRouter(r *gin.RouterGroup) {
 	user.DELETE("/:id", service.DeleteUser)
 	// put user
 	user.PUT("/:id", service.PutUser)
+
+	//LoginUser
+	user.POST("/login", service.LoginUser)
 }

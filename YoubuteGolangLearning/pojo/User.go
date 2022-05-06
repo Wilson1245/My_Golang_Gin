@@ -48,3 +48,10 @@ func UpdateUser(userId string, user User) User {
 	db.DBconnect.Model(&user).Where("id = ?", userId).Updates(user)
 	return user
 }
+
+// Check if user exists
+func LoginUser(name string, password string) User {
+	user := User{}
+	db.DBconnect.Where("name = ?, password = ?", name, password).First(&user)
+	return user
+}

@@ -76,3 +76,15 @@ func CreateUsers(c *gin.Context) {
 	}
 	c.JSON(http.StatusOK, users)
 }
+
+// LoginUser
+func LoginUser(c *gin.Context) {
+	name := c.PostForm("name")
+	password := c.PostForm("password")
+	user := pojo.LoginUser(name, password)
+	if user.Id == 0 {
+		c.JSON(http.StatusNotFound, "Error")
+		return
+	}
+	c.JSON(http.StatusOK, user)
+}
