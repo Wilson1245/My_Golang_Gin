@@ -11,7 +11,7 @@ import (
 func AddUserRouter(r *gin.RouterGroup) {
 	user := r.Group("/users", session.SetSession())
 
-	user.GET("/", service.GetAllUser)
+	user.GET("/", service.CachDecoratorUserAll(service.RedisUserAll, "user_all", pojo.User{}))
 	user.GET("/:id", service.CachDecorator(service.RedisUser, "id", "user_%s", pojo.User{}))
 	user.POST("/", service.PostUser)
 	user.POST("/more", service.CreateUsers)

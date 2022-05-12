@@ -118,3 +118,10 @@ func RedisUser(c *gin.Context) {
 	db.DBconnect.Find(&user, id)
 	c.Set("dbResult", user)
 }
+
+// Redis User All
+func RedisUserAll(c *gin.Context) {
+	users := []pojo.User{}
+	db.DBconnect.Find(&users)
+	c.Set("dbUserAll", users)
+}

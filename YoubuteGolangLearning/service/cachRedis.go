@@ -31,13 +31,41 @@ func CachDecorator(h gin.HandlerFunc, porm string, readKeyPattern string, empty 
 					"Data":    dbResult,
 				})
 				return
-			} else {
-				ffjson.Unmarshal(data, &empty)
-				c.JSON(http.StatusOK, gin.H{
-					"Message": "From Redis",
-					"Data":    empty,
-				})
 			}
+			ffjson.Unmarshal(data, &empty)
+			c.JSON(http.StatusOK, gin.H{
+				"Message": "From Redis",
+				"Data":    empty,
+			})
+		}
+	}
+}
+
+func CachDecoratorUserAll(h gin.HandlerFunc, readKeyPattern string, empty interface{}) gin.HandlerFunc {
+	{
+		return func(c *gin.Context) {
+			conn := red.RedisDefaultPool.Get()
+			defer conn.Close()
+			data, err := redis.Bytes(conn.Do("GET", readKeyPattern))
+			if err != nil {
+				h(c)
+				dbUserAll, exists := c.Get("dbUserAll")
+				if !exists {
+					dbUserAll = empty
+				}
+				redisData, _ := ffjson.Marshal(dbUserAll)
+				conn.Do("SETEX", readKeyPattern, 30, redisData)
+				c.JSON(http.StatusOK, gin.H{
+					"Message": "From DB",
+					"Data":    dbUserAll,
+				})
+				return
+			}
+			ffjson.Unmarshal(data, &empty)
+			c.JSON(http.StatusOK, gin.H{
+				"Message": "From Redis",
+				"Data":    empty,
+			})
 		}
 	}
 }
