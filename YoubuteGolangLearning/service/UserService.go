@@ -1,6 +1,7 @@
 package service
 
 import (
+	db "golangAPI/database"
 	session "golangAPI/middlewares"
 	"golangAPI/pojo"
 	"log"
@@ -108,4 +109,12 @@ func LogoutUser(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
 		"message": "Successfully logged out",
 	})
+}
+
+// Redis User
+func RedisUser(c *gin.Context) {
+	id := c.Param("id")
+	user := pojo.User{}
+	db.DBconnect.Find(&user, id)
+	c.Set("dbResult", user)
 }

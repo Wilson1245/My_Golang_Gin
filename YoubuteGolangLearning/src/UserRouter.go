@@ -2,6 +2,7 @@ package src
 
 import (
 	session "golangAPI/middlewares"
+	"golangAPI/pojo"
 	"golangAPI/service"
 
 	"github.com/gin-gonic/gin"
@@ -11,7 +12,7 @@ func AddUserRouter(r *gin.RouterGroup) {
 	user := r.Group("/users", session.SetSession())
 
 	user.GET("/", service.GetAllUser)
-	user.GET("/:id", service.GetOneUser)
+	user.GET("/:id", service.CachDecorator(service.RedisUser, "id", "user_%s", pojo.User{}))
 	user.POST("/", service.PostUser)
 	user.POST("/more", service.CreateUsers)
 
