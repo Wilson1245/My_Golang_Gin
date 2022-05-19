@@ -16,6 +16,12 @@ func AddUserRouter(r *gin.RouterGroup) {
 	user.POST("/", service.PostUser)
 	user.POST("/more", service.CreateUsers)
 
+	mgo := user.Group("/mongo")
+	mgo.GET("/", service.FindAllMgoUser)
+	mgo.POST("/", service.CreateMgoUser)
+	mgo.GET("/:id", service.FindByIdMgoUser)
+	mgo.GET("/n/:name", service.FindByNameMgoUser)
+
 	// put user
 	user.PUT("/:id", service.PutUser)
 

@@ -35,7 +35,11 @@ func main() {
 	src.AddUserRouter(v1)
 
 	go func() {
+		// 加入 MySQL Connection
 		database.DD()
+
+		// 加入 MongoDB Connection
+		database.MD()
 	}()
 
 	router.Run(":8000")

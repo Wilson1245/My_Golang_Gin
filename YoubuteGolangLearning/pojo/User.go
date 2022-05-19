@@ -2,6 +2,9 @@ package pojo
 
 import (
 	db "golangAPI/database"
+	"strconv"
+
+	"gopkg.in/mgo.v2/bson"
 )
 
 type User struct {
@@ -53,5 +56,31 @@ func UpdateUser(userId string, user User) User {
 func LoginUser(name string, password string) User {
 	user := User{}
 	db.DBconnect.Where("name = ? and password = ?", name, password).First(&user)
+	return user
+}
+
+// MongoDB --------------------------------
+
+func MgoCreateUser(user User) User {
+	db.MgoConnect.Insert(user)
+	return user
+}
+
+func MgoFindAllUser() []User {
+	users := []User{}
+	db.MgoConnect.Find(nil).All(&users)
+	return users
+}
+
+func MgoFindById(id string) User {
+	userid, _ := strconv.Atoi(id)
+	user := User{}
+	db.MgoConnect.Find(bson.M{"id": userid}).One(&user)
+	return user
+}
+
+func MgoFindByName(name string) User {
+	user := User{}
+	db.MgoConnect.Find(bson.M{"name": name}).One(&user)
 	return user
 }

@@ -69,6 +69,8 @@ func PutUser(c *gin.Context) {
 	c.JSON(http.StatusOK, "Successfully")
 }
 
+// Create Users
+
 func CreateUsers(c *gin.Context) {
 	users := pojo.Users{}
 	err := c.BindJSON(&users)
@@ -124,4 +126,54 @@ func RedisUserAll(c *gin.Context) {
 	users := []pojo.User{}
 	db.DBconnect.Find(&users)
 	c.Set("dbUserAll", users)
+}
+
+// MongoDB Create User
+func CreateMgoUser(c *gin.Context) {
+	user := pojo.User{}
+	err := c.BindJSON(&user)
+	if err != nil {
+		c.String(400, "Error:%s", err.Error())
+		return
+	}
+	newUser := pojo.MgoCreateUser(user)
+	c.JSON(http.StatusOK, gin.H{
+		"message": "Successfully created",
+		"Data":    newUser,
+	})
+}
+
+// MongoDB FindAll User
+func FindAllMgoUser(c *gin.Context) {
+	users := pojo.MgoFindAllUser()
+	c.JSON(http.StatusOK, gin.H{
+		"message": "Successfully",
+		"Data":    users,
+	})
+}
+
+// MongoDB FindById User
+func FindByIdMgoUser(c *gin.Context) {
+	user := pojo.MgoFindById(c.Param("id"))
+	if user.Id == 0 {
+		c.JSON(http.StatusNotFound, "Error")
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"message": "Successfully",
+		"Data":    user,
+	})
+}
+
+// MongoDB FindByName User
+func FindByNameMgoUser(c *gin.Context) {
+	user := pojo.MgoFindByName(c.Param("name"))
+	if user.Id == 0 {
+		c.JSON(http.StatusNotFound, "Error")
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"message": "Successfully",
+		"Data":    user,
+	})
 }
