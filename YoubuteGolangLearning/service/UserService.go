@@ -177,3 +177,32 @@ func FindByNameMgoUser(c *gin.Context) {
 		"Data":    user,
 	})
 }
+
+// MongoDB Update User
+func UpdateMgoUser(c *gin.Context) {
+	user := pojo.User{}
+	err := c.BindJSON(&user)
+	if err != nil {
+		c.String(400, "Error:%s", err.Error())
+		return
+	}
+	user = pojo.MgoPutUser(c.Param("id"), user)
+	if user.Id == 0 {
+		c.JSON(http.StatusNotFound, "Error")
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"message": "Successfully",
+		"Data":    user,
+	})
+}
+
+// MongoDB Delete User
+func DeleteMgoUser(c *gin.Context) {
+	isDelete := pojo.MgoDeleteUser(c.Param("id"))
+	if isDelete {
+		c.JSON(http.StatusOK, "Successfully")
+		return
+	}
+	c.JSON(http.StatusNotFound, "Error")
+}

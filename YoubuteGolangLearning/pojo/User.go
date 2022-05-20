@@ -2,6 +2,7 @@ package pojo
 
 import (
 	db "golangAPI/database"
+	"log"
 	"strconv"
 
 	"gopkg.in/mgo.v2/bson"
@@ -83,4 +84,26 @@ func MgoFindByName(name string) User {
 	user := User{}
 	db.MgoConnect.Find(bson.M{"name": name}).One(&user)
 	return user
+}
+
+func MgoPutUser(id string, user User) User {
+	userid, _ := strconv.Atoi(id)
+	updateUserId := bson.M{"id": userid}
+	updateDate := bson.M{"$set": user}
+	err := db.MgoConnect.Update(updateUserId, updateDate)
+	if err != nil {
+		log.Println(err)
+		return User{}
+	}
+	return user
+}
+
+func MgoDeleteUser(id string) bool {
+	userid, _ := strconv.Atoi(id)
+	err := db.MgoConnect.Remove(bson.M{"id": userid})
+	if err != nil {
+		log.Println(err)
+		return false
+	}
+	return true
 }

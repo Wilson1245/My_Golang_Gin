@@ -12,6 +12,8 @@
 [GIN-debug] POST   /v1/users/mongo/          --> golangAPI/service.CreateMgoUser (6 handlers)
 [GIN-debug] GET    /v1/users/mongo/:id       --> golangAPI/service.FindByIdMgoUser (6 handlers)
 [GIN-debug] GET    /v1/users/mongo/n/:name   --> golangAPI/service.FindByNameMgoUser (6 handlers)
+[GIN-debug] PUT    /v1/users/mongo/:id       --> golangAPI/service.UpdateMgoUser (6 handlers)
+[GIN-debug] DELETE /v1/users/mongo/:id       --> golangAPI/service.DeleteMgoUser (6 handlers)
 [GIN-debug] PUT    /v1/users/:id             --> golangAPI/service.PutUser (6 handlers)
 [GIN-debug] POST   /v1/users/login           --> golangAPI/service.LoginUser (6 handlers)
 [GIN-debug] DELETE /v1/users/:id             --> golangAPI/service.DeleteUser (7 handlers)
@@ -20,19 +22,5 @@
 [GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
 Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
 [GIN-debug] Listening and serving HTTP on :8000
-::1 - [2022-05-19 20:47:01.83966 +0800 CST m=+7.076009277] GET /v1/users/mongo/1 200 996.769µs 
-[GIN] 2022/05/19 - 20:47:01 | 200 |    1.064648ms |             ::1 | GET      "/v1/users/mongo/1"
-::1 - [2022-05-19 20:47:05.300647 +0800 CST m=+10.536923588] GET /v1/users/mongo/2 200 499.548µs 
-[GIN] 2022/05/19 - 20:47:05 | 200 |     556.498µs |             ::1 | GET      "/v1/users/mongo/2"
-::1 - [2022-05-19 20:47:07.156761 +0800 CST m=+12.392999541] GET /v1/users/mongo/3 404 438.272µs 
-[GIN] 2022/05/19 - 20:47:07 | 404 |     488.346µs |             ::1 | GET      "/v1/users/mongo/3"
-::1 - [2022-05-19 20:47:10.419571 +0800 CST m=+15.655740946] GET /v1/users/mongo/4 404 564.734µs 
-[GIN] 2022/05/19 - 20:47:10 | 404 |     632.479µs |             ::1 | GET      "/v1/users/mongo/4"
-::1 - [2022-05-19 20:47:11.720223 +0800 CST m=+16.956365574] GET /v1/users/mongo/3 404 385.021µs 
-[GIN] 2022/05/19 - 20:47:11 | 404 |      432.83µs |             ::1 | GET      "/v1/users/mongo/3"
-::1 - [2022-05-19 20:47:12.966074 +0800 CST m=+18.202190424] GET /v1/users/mongo/1 200 475.518µs 
-[GIN] 2022/05/19 - 20:47:12 | 200 |     527.854µs |             ::1 | GET      "/v1/users/mongo/1"
-::1 - [2022-05-19 20:47:47.186827 +0800 CST m=+52.422227514] GET /v1/users/mongo/n/John123 200 418.472µs 
-[GIN] 2022/05/19 - 20:47:47 | 200 |     482.822µs |             ::1 | GET      "/v1/users/mongo/n/John123"
-::1 - [2022-05-19 20:47:53.188484 +0800 CST m=+58.423758937] GET /v1/users/mongo/n/Tom123 200 438.299µs 
-[GIN] 2022/05/19 - 20:47:53 | 200 |     508.898µs |             ::1 | GET      "/v1/users/mongo/n/Tom123"
+::1 - [2022-05-20 18:57:49.07238 +0800 CST m=+19.500801545] DELETE /v1/users/mongo/2 200 559.154µs 
+[GIN] 2022/05/20 - 18:57:49 | 200 |     710.168µs |             ::1 | DELETE   "/v1/users/mongo/2"

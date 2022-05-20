@@ -21,6 +21,8 @@ func AddUserRouter(r *gin.RouterGroup) {
 	mgo.POST("/", service.CreateMgoUser)
 	mgo.GET("/:id", service.FindByIdMgoUser)
 	mgo.GET("/n/:name", service.FindByNameMgoUser)
+	mgo.PUT("/:id", service.UpdateMgoUser)
+	mgo.DELETE("/:id", service.DeleteMgoUser)
 
 	// put user
 	user.PUT("/:id", service.PutUser)
